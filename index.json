@@ -2,7 +2,7 @@
   "plugins": [
     {
       "name": "billing",
-      "description": "Nous Portal usage widget for Hermes Desktop \u2014 remaining spendable credits plus the plan-usage percentage in the statusbar, colour-coded (green while healthy, red when the plan is >=90% used). Hover shows plan / top-up / rollover detail; click opens the portal billing page.",
+      "description": "Nous Portal usage widget for Hermes Desktop — remaining spendable credits plus the plan-usage percentage in the statusbar, colour-coded (green while healthy, red when the plan is >=90% used). Hover shows plan / top-up / rollover detail; click opens the portal billing page.",
       "author": "anotherchu",
       "tags": [
         "desktop",
@@ -22,7 +22,7 @@
     },
     {
       "name": "revell",
-      "description": "Revell memory provider for Hermes \u2014 verbatim boot payload delivery at session start and on compaction, cross-session identity continuity, agent-first memory framing.",
+      "description": "Revell memory provider for Hermes — verbatim boot payload delivery at session start and on compaction, cross-session identity continuity, agent-first memory framing.",
       "author": "Revell, Inc.",
       "repo": "Revell-ai/revell-onyx",
       "subdir": "lark",
@@ -36,7 +36,7 @@
     },
     {
       "name": "revell-context",
-      "description": "Revell context engine for Hermes \u2014 compaction strategy that replaces lossy LLM summary with Revell's verbatim boot payload. Pairs with the revell memory provider.",
+      "description": "Revell context engine for Hermes — compaction strategy that replaces lossy LLM summary with Revell's verbatim boot payload. Pairs with the revell memory provider.",
       "author": "Revell, Inc.",
       "repo": "Revell-ai/revell-onyx",
       "subdir": "dove",
@@ -50,7 +50,7 @@
     },
     {
       "name": "usage-center",
-      "description": "Hermes Usage Center \u2014 local tokens plus official Grok/Codex/Claude quota, with reset-cycle usage beside remaining percent.",
+      "description": "Hermes Usage Center — local tokens plus official Grok/Codex/Claude quota, with reset-cycle usage beside remaining percent.",
       "author": "Chen Leshu",
       "tags": [
         "usage",
@@ -167,6 +167,95 @@
       ],
       "api_version": 1,
       "added_at": "2026-08-31"
+    },
+    {
+      "name": "better-colors",
+      "description": "Improve your session list with full name color, bolding, and a Codicon icon when a session is idle.",
+      "author": "Apostol Apostolov",
+      "tags": [
+        "desktop",
+        "appearance",
+        "sessions"
+      ],
+      "repo": "apoapostolov/hermes-agent-awesome-plugins",
+      "ref": "cdaec745540990de7d0c7c5a3ee73267687ac243",
+      "subdir": "plugins/better-colors",
+      "homepage": "https://github.com/apoapostolov/hermes-agent-awesome-plugins/tree/main/plugins/better-colors",
+      "api_version": 1,
+      "added_at": "2026-09-01"
+    },
+    {
+      "name": "drag-to-pin-session",
+      "description": "Reorganize your pinned sessions with drag-and-drop. Drag a session into the Pinned section to pin it, or drag it out to unpin.",
+      "author": "Apostol Apostolov",
+      "tags": [
+        "desktop",
+        "sessions",
+        "sidebar"
+      ],
+      "repo": "apoapostolov/hermes-agent-awesome-plugins",
+      "ref": "cdaec745540990de7d0c7c5a3ee73267687ac243",
+      "subdir": "plugins/drag-to-pin-session",
+      "homepage": "https://github.com/apoapostolov/hermes-agent-awesome-plugins/tree/main/plugins/drag-to-pin-session",
+      "api_version": 1,
+      "added_at": "2026-09-01"
+    },
+    {
+      "name": "guard-mode",
+      "description": "SafeHermes: a pre_tool_call guard plus four user-typed slash commands (/readonly, /writemode, /automode, /guardstatus) to switch the guard between readonly, project-confined write, and auto modes. The agent cannot invoke the slash commands itself, so it cannot change its own restrictions.",
+      "author": "cseliot",
+      "repo": "CSEliot/SafeHermes",
+      "ref": "d6c6be04c7417bdb7485a92de5e5396e7da203fc",
+      "homepage": "https://github.com/CSEliot/SafeHermes",
+      "tags": [
+        "security",
+        "guard",
+        "slash-commands"
+      ],
+      "capabilities": [
+        "cli"
+      ],
+      "api_version": 1,
+      "added_at": "2026-09-02"
+    },
+    {
+      "name": "provider-status",
+      "description": "Unified multi-provider quota usage tracking in the status bar, with support for OAuth, color-based warnings, and multiple accounts per provider with Hermes key rotation on exhaust.",
+      "author": "Apostol Apostolov",
+      "tags": [
+        "desktop",
+        "quota",
+        "oauth",
+        "statusbar"
+      ],
+      "repo": "apoapostolov/hermes-agent-awesome-plugins",
+      "ref": "cdaec745540990de7d0c7c5a3ee73267687ac243",
+      "subdir": "plugins/provider-status",
+      "homepage": "https://github.com/apoapostolov/hermes-agent-awesome-plugins/tree/main/plugins/provider-status",
+      "capabilities": [
+        "dashboard"
+      ],
+      "api_version": 1,
+      "added_at": "2026-09-01"
+    },
+    {
+      "name": "tool-break",
+      "description": "Never let a stalled tool call force you to cancel a long task. You can abort an in-flight call with /break, instruct with /break {message}, or force it to repeat with /again.",
+      "author": "Apostol Apostolov",
+      "tags": [
+        "desktop",
+        "commands",
+        "hooks"
+      ],
+      "repo": "apoapostolov/hermes-agent-awesome-plugins",
+      "ref": "f7a2bd0622d4e582cd0a63b9f72aaeeb88843907",
+      "subdir": "plugins/tool-break",
+      "homepage": "https://github.com/apoapostolov/hermes-agent-awesome-plugins/tree/main/plugins/tool-break",
+      "capabilities": [
+        "commands"
+      ],
+      "api_version": 1,
+      "added_at": "2026-09-01"
     }
   ]
 }
