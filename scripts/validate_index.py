@@ -165,6 +165,12 @@ def network_checks(entry: dict, f: Findings) -> None:
               "Network failure during the run, not a finding about the entry. "
               "Re-run before drawing a conclusion.")
         return
+    if status in (401, 403) or status in (429,) or 500 <= status < 600:
+        # A service failure (rate limit, auth hiccup, 5xx) is not a verdict
+        # about the entry: ask a human instead of blocking an innocent PR.
+        f.ask(who, f"`{repo}` could not be checked (HTTP {status})",
+              "Transient API failure. Re-run before drawing a conclusion.")
+        return
     if status != 200:
         f.block(who, f"`{repo}` did not resolve (HTTP {status})",
                 "Confirm the repository exists, is public, and is spelled "
@@ -183,6 +189,9 @@ def network_checks(entry: dict, f: Findings) -> None:
         if status == 0:
             f.ask(who, "could not reach the API to check `ref`",
                   "Network failure during the run. Re-run before concluding.")
+        elif status == 429 or status in (401, 403) or 500 <= status < 600:
+            f.ask(who, f"`ref` could not be checked against `{repo}` (HTTP {status})",
+                  "Service failure on the API side. Re-run before concluding.")
         elif status != 200:
             f.block(who, f"`ref` {ref[:12]}\u2026 does not resolve on `{repo}` "
                          f"(HTTP {status})",
@@ -262,6 +271,25 @@ def main() -> int:
         return 1
 
     entries = entries_of(doc)
+
+    # A non-dict item (null, string, array) would crash entry.get(...) deep in
+    # shape_checks before any structured finding exists. Report the slot and
+    # drop it from processing.
+    malformed: list[int] = []
+    valid: list[dict] = []
+    for idx, item in enumerate(entries):
+        if isinstance(item, dict):
+            valid.append(item)
+        else:
+            malformed.append(idx)
+    for idx in malformed:
+        f.block(f"plugins[{idx}]", "is not a plugin object (null, string, or array)",
+                "Every element of `plugins` must be a JSON object with at least "
+                "a `name`, `repo`, and `ref`.")
+    if malformed and not valid:
+        emit(f, args.summary, checked=0)
+        return 1
+    entries = valid
 
     # Guards the guard: an index that parsed to nothing is not a clean run.
     if not entries:
